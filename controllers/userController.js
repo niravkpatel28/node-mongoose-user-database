@@ -201,10 +201,20 @@ const userStats = async (req, res) => {
     const stats = await User.aggregate([
       // {
       //   $match: { company: "Surfboard" },
+      //   // match based only on company name
       // },
       {
-        $group: { _id: "$company", employeeCount: { $sum: 1 } },
+        // group the employees of one company into an array
+        $group: {
+          _id: "$company",
+          employee: {
+            $push: { name: "$name", surname: "$surname", email: "$email" },
+          },
+        },
       },
+      // {
+      //   $group: { _id: "$company", employeeCount: { $sum: 1 }, name: {} },
+      // },
     ]);
 
     res.status(200).json({
