@@ -4,7 +4,8 @@
   "description": "Application to create a user data inside a mongodb",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Nirav Patel",
   "license": "ISC",
@@ -13,5 +14,19 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.23",
     "uniqid": "^5.2.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niravkpatel28/node-mongoose-user-database.git"
+  },
+  "keywords": [
+    "mongod",
+    "mongoose",
+    "express"
+  ],
+  "bugs": {
+    "url": "https://github.com/niravkpatel28/node-mongoose-user-database/issues"
+  },
+  "homepage": "https://github.com/niravkpatel28/node-mongoose-user-database#readme"
 }
