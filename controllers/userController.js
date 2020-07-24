@@ -111,6 +111,7 @@ const createNewUser = (req, res, next) => {
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email,
+    company: req.body.company,
   })
     .then((data) => {
       console.log("Data written succesfully", data);
@@ -122,11 +123,12 @@ const createNewUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log("Error in writing the data", err);
+      // console.log("Error in writing the data", err);
       res.status(400).json({
         status: "Error in creating user",
-        err: err,
+        error: err,
       });
+      return new Error("Error while creating a new user", err);
     });
 };
 
@@ -193,9 +195,38 @@ const onlyEmail = (req, res, next) => {
   console.log(req.url);
   next();
 };
+
+const userStats = async (req, res) => {
+  try {
+    const stats = await User.aggregate([
+      // {
+      //   $match: { company: "Surfboard" },
+      // },
+      {
+        $group: { _id: "$company", employeeCount: { $sum: 1 } },
+      },
+    ]);
+
+    res.status(200).json({
+      status: "Successfully Updated User ",
+      data: {
+        stats: stats,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "Error in collecting statistics",
+      error: err,
+    });
+  }
+};
 module.exports.getAllUsers = getAllUsers;
 module.exports.createNewUser = createNewUser;
 module.exports.getSingleUser = getSingleUser;
 module.exports.updateUser = updateUser;
 module.exports.deleteUser = deleteUser;
 module.exports.onlyEmail = onlyEmail;
+module.exports.userStats = userStats;
+//Aggregation framework
+// https://masteringjs.io/tutorials/mongoose/aggregate

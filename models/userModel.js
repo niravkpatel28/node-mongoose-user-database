@@ -30,6 +30,10 @@ const userSchema = mongoose.Schema({
       message: "Please provide a valid email id",
     },
   },
+  company: {
+    type: String,
+    required: [true, "Please enter your company name"],
+  },
 });
 const User = mongoose.model("User", userSchema);
 
