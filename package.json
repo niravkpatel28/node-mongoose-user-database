@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/niravkpatel28/node-mongoose-user-database/issues"
   },
-  "homepage": "https://github.com/niravkpatel28/node-mongoose-user-database#readme"
+  "homepage": "https://github.com/niravkpatel28/node-mongoose-user-database#readme",
+  "engines": {
+    "node": "10.x"
+  }
 }
