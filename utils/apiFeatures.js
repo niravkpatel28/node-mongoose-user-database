@@ -24,9 +24,10 @@ class ApiFeatures {
     // it will return only ids
     if (this.queryString.fields) {
       //this will create a string for selecting fields
-      let fields = this.queryString.fields.split(",").join(" ");
+      // let fields = this.queryString.fields.split(",").join(" ");
+      console.log(this.queryString.fields.split(",").join(" "));
       this.query = this.query.select(
-        this.queryString.fields.split(",").join(" ")
+        `${this.queryString.fields.split(",").join(" ")}`
       );
     } else {
       this.query = this.query.select("-__v");
