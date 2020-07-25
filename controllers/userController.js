@@ -112,6 +112,7 @@ const createNewUser = (req, res, next) => {
     surname: req.body.surname,
     email: req.body.email,
     company: req.body.company,
+    createdAt: Date.now(), //create a date of joining
   })
     .then((data) => {
       console.log("Data written succesfully", data);
@@ -207,6 +208,11 @@ const userStats = async (req, res) => {
         // group the employees of one company into an array
         $group: {
           _id: "$company",
+
+          //counting employee numbers for each company
+          employeeCount: {
+            $sum: 1,
+          },
           employee: {
             $push: { name: "$name", surname: "$surname", email: "$email" },
           },

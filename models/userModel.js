@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter your company name"],
   },
+  createdAt: {
+    type: Date,
+    required: [true, "Please mention date of joining"],
+  },
 });
 const User = mongoose.model("User", userSchema);
 
