@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 // create a userController
-// the order is important as /user-stats and /only-email may get processed as /:id
+// the order is important as /user-stats and /only-email may get processed as /:idc
 router.route("/user-stats").get(userStats);
 router.route("/only-email").get(onlyEmail, getAllUsers);
 router.route("/").get(getAllUsers).post(createNewUser);
