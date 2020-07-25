@@ -25,7 +25,6 @@ class ApiFeatures {
     if (this.queryString.fields) {
       //this will create a string for selecting fields
       // let fields = this.queryString.fields.split(",").join(" ");
-      console.log(this.queryString.fields.split(",").join(" "));
       this.query = this.query.select(
         `${this.queryString.fields.split(",").join(" ")}`
       );
