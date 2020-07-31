@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// const slugify = require("slugify");
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -39,6 +39,10 @@ const userSchema = mongoose.Schema(
       type: Date,
       required: [true, "Please mention date of joining"],
     },
+    // this is just to create unique names for input values
+    // slug: {
+    //   type: String,
+    // },
   },
   {
     // additional configuration options to mongoose schema
@@ -51,6 +55,30 @@ const userSchema = mongoose.Schema(
   }
 );
 
+//Adding pre hooks. Document middleware
+// This middleware is executed before the document is saved or created
+// pre save hook or pre save middleware
+userSchema.pre("save", function (next) {
+  try {
+    console.log("New user about to be saved ", this);
+    // this.slug = slugify(`${this.name} ${this.surname}`);
+    // console.log(this.slug);
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(501).json({
+      status: "Error in creating new users",
+      error: err,
+    });
+  }
+});
+
+// post hook document middleware
+
+userSchema.post("save", function (next) {
+  // console.log("post middleware created", this);
+  next();
+});
 // adding virtual properties
 // these properties are the ones that can be derived from the documents itself
 
